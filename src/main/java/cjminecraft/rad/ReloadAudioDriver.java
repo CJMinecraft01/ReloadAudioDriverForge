@@ -1,16 +1,15 @@
 package cjminecraft.rad;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.InputMappings;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import cjminecraft.rad.init.ModGlobals;
+import cjminecraft.rad.proxy.ClientProxy;
+import cjminecraft.rad.proxy.CommonProxy;
+import cjminecraft.rad.proxy.IProxy;
 
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,38 +17,36 @@ import org.apache.logging.log4j.Logger;
 /**
  * A simple mod which will reload the audio drivers when pressing F3 + R
  */
-@Mod(ReloadAudioDriver.MODID)
-@Mod.EventBusSubscriber
+@Mod(ModGlobals.MODID)
 public class ReloadAudioDriver
 {
-    static final String MODID = "rad";
-    static final String NAME = "Reload Audio Driver";
-    static final String VERSION = "${version}";
-    private static Logger LOGGER = LogManager.getFormatterLogger(ReloadAudioDriver.NAME);
+    public static ReloadAudioDriver instance;
+    public static Logger LOGGER = LogManager.getFormatterLogger(ModGlobals.NAME);
+    private static IProxy proxy = DistExecutor.runForDist(
+            () -> () -> new ClientProxy(),
+            () -> () -> new CommonProxy()
+    );
 
-    @SubscribeEvent
-    public static void onKeyInputEvent(InputEvent.KeyInputEvent event)
+    public ReloadAudioDriver()
     {
-        // keys: https://www.glfw.org/docs/latest/group__keys.html
-        if (InputMappings.isKeyDown(Minecraft.getInstance().mainWindow.getHandle(),292))
+        if (instance == null)
         {
-            if (InputMappings.isKeyDown(Minecraft.getInstance().mainWindow.getHandle(), 82))
-            {
-                Minecraft.getInstance().keyboardListener.actionKeyF3 = true;
-                LOGGER.info("Reloading sounds!");
-                Minecraft.getInstance().getSoundHandler().sndManager.reload();
-                LOGGER.info("Reloaded sounds!");
-                //Hardcoded for now
-                //Minecraft.getInstance().player.sendMessage((new StringTextComponent("")).appendSibling((new TranslationTextComponent("reload_audio_driver.success")).applyTextStyles(new TextFormatting[]{TextFormatting.GREEN})));
-                Minecraft.getInstance().player.sendMessage((new StringTextComponent("Successfully reloaded audio drivers!")).applyTextStyles(new TextFormatting[]{TextFormatting.GREEN}));
-
-            }
-            else if (InputMappings.isKeyDown(Minecraft.getInstance().mainWindow.getHandle(), 81))
-            {
-                //Hardcoded for now F3 + R = Reload audio drivers
-                //Minecraft.getInstance().player.sendMessage((new StringTextComponent("")).appendSibling((new TranslationTextComponent("reload_audio_driver.details"))));
-                Minecraft.getInstance().player.sendMessage(new StringTextComponent("F3 + R = Reload audio drivers"));
-            }
+            instance = this;
         }
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
+    }
+
+    private void init(final FMLCommonSetupEvent event) {
+        proxy.init(event);
+    }
+
+    public static ReloadAudioDriver getInstance()
+    {
+        return instance;
+    }
+
+    public static IProxy getProxy()
+    {
+        return proxy;
     }
 }
