@@ -1,7 +1,8 @@
 modLoader="javafml"
 loaderVersion="[26,)"
-#logoFile="quickleafdecay.png" #optional
-authors="CJMinecraft" #optional
+logoFile="rad.png" #optional
+authors="CJMinecraft, JayJay1989BE" #optional
+credits=""
 displayURL="https://minecraft.curseforge.com/projects/reload-audio-driver-rad" #optional
 issueTrackerURL="https://github.com/CJMinecraft01/ReloadAudioDriver/issues" #optional
 
@@ -13,7 +14,7 @@ issueTrackerURL="https://github.com/CJMinecraft01/ReloadAudioDriver/issues" #opt
     Reloads the audio driver when pressing F3 + R.
     '''
 
-[[dependencies.sct]]
+[[dependencies.rad]]
     modId="forge"
     mandatory=true
     versionRange="[26,)"

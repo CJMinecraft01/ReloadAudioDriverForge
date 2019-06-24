@@ -22,10 +22,7 @@ public class ReloadAudioDriver
 {
     public static ReloadAudioDriver instance;
     public static Logger LOGGER = LogManager.getFormatterLogger(ModGlobals.NAME);
-    private static IProxy proxy = DistExecutor.runForDist(
-            () -> () -> new ClientProxy(),
-            () -> () -> new CommonProxy()
-    );
+    private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public ReloadAudioDriver()
     {
@@ -36,7 +33,8 @@ public class ReloadAudioDriver
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
     }
 
-    private void init(final FMLCommonSetupEvent event) {
+    private void init(final FMLCommonSetupEvent event)
+    {
         proxy.init(event);
     }
 

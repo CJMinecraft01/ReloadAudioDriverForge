@@ -1,0 +1,6 @@
+{
+  "reload_audio_driver.success": "Аудиодрайверы успешно перезагружены!",
+  "reload_audio_driver.details": "F3 + R = Перезагрузить аудиодрайверы",
+  "reload_audio_driver.client_startup": "Enabling...",
+  "reload_audio_driver.server_startup": "This mod cannot be loaded on this side."
+}
