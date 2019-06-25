@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[26,)"
+loaderVersion="[27,)"
 logoFile="rad.png" #optional
 authors="CJMinecraft, JayJay1989BE" #optional
 credits=""
@@ -17,6 +17,6 @@ issueTrackerURL="https://github.com/CJMinecraft01/ReloadAudioDriver/issues" #opt
 [[dependencies.rad]]
     modId="forge"
     mandatory=true
-    versionRange="[26,)"
+    versionRange="[27,)"
     ordering="NONE"
     side="BOTH"
