@@ -43,7 +43,7 @@ dependencies {
 }
 
 minecraft {
-    mappings channel: 'snapshot', version: project.MCPMappings
+    mappings channel: 'snapshot', version: "${project.MCPMappings}-${project.MCVersion}"
     accessTransformer = file('src/main/resources/META-INF/rad_at.cfg')
     runs {
         client = {
