@@ -24,15 +24,13 @@ apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle'
 
 //adds the build number to the end of the version string if on a build server
-String build_number = System.getenv().BUILD_NUMBER
-if (build_number == null) {
-    build_number = "9999"
-}
+build_number = System.getenv().BUILD_NUMBER
 
 String semver = "${project.version_major}.${project.version_minor}.${project.version_patch}"
 
 version = "${semver}.${build_number}"
 group = "cjminecraft.rad" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "ReloadAudioDriver-${project.MCVersion}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -41,11 +39,11 @@ repositories {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${project.mcversion}-${project.forgeversion}"
+    minecraft "net.minecraftforge:forge:${project.MCVersion}-${project.ForgeVersion}"
 }
 
 minecraft {
-    mappings channel: 'snapshot', version: project.mcp_mappings
+    mappings channel: 'snapshot', version: project.MCPMappings
     accessTransformer = file('src/main/resources/META-INF/rad_at.cfg')
     runs {
         client = {
@@ -82,10 +80,10 @@ jar {
 
 processResources {
     inputs.property "version", version
-    inputs.property "mcversion", project.mcversion
+    inputs.property "mcversion", project.MCVersion
     from(sourceSets.main.resources.srcDirs) {
         include 'mods.toml'
-        expand 'version': version, 'mcversion': project.mcversion
+        expand 'version': version, 'mcversion': project.MCVersion
     }
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mods.toml'
