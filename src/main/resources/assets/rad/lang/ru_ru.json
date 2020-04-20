@@ -1,0 +1,4 @@
+{
+  "reload_audio_driver.success": "Аудиодрайверы успешно перезагружены!",
+  "reload_audio_driver.details": "F3 + R = Перезагрузить аудиодрайверы"
+}
