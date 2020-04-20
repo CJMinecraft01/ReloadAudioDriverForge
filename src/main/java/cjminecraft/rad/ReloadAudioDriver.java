@@ -28,7 +28,7 @@ public class ReloadAudioDriver {
         if (event.getAction() != GLFW.GLFW_PRESS)
             return;
         if (Minecraft.getInstance().currentScreen == null) {
-            if (InputMappings.isKeyDown(Minecraft.getInstance().mainWindow.getHandle(), GLFW.GLFW_KEY_F3)) {
+            if (InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), GLFW.GLFW_KEY_F3)) {
                 if (event.getKey() == GLFW.GLFW_KEY_R) {
                     Minecraft.getInstance().keyboardListener.actionKeyF3 = true;
                     LOGGER.info("Reloading sounds!");
