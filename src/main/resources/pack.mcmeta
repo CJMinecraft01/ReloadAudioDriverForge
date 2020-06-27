@@ -1,6 +1,6 @@
 {
     "pack": {
-        "description": "Reload Audio Driver Resources",
-        "pack_format": 3
+        "description": "RAD resources",
+        "pack_format": 5
     }
 }
