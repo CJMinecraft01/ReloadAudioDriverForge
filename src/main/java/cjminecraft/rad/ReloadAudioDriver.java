@@ -1,6 +1,7 @@
 package cjminecraft.rad;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.toasts.SystemToast;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,7 +35,8 @@ public class ReloadAudioDriver {
                     LOGGER.info("Reloading sounds!");
                     Minecraft.getInstance().getSoundHandler().sndManager.reload();
                     LOGGER.info("Reloaded sounds!");
-                    Minecraft.getInstance().keyboardListener.printDebugMessage("reload_audio_driver.success");
+//                    Minecraft.getInstance().keyboardListener.printDebugMessage("reload_audio_driver.success");
+                    SystemToast.addOrUpdate(Minecraft.getInstance().getToastGui(), SystemToast.Type.TUTORIAL_HINT, new TranslationTextComponent("reload_audio_driver.toast.title"), new TranslationTextComponent("reload_audio_driver.toast.body"));
                 } else if (event.getKey() == GLFW.GLFW_KEY_Q) {
                     Minecraft.getInstance().ingameGUI.getChatGUI().printChatMessage(new TranslationTextComponent("reload_audio_driver.details"));
                 }
