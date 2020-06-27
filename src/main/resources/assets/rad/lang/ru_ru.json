@@ -1,0 +1,5 @@
+{
+  "reload_audio_driver.details": "F3 + R = Перезагрузить аудиодрайверы",
+  "reload_audio_driver.toast.title": "Перезагрузить аудиодрайверы",
+  "reload_audio_driver.toast.body": "Аудиодрайверы успешно перезагружены!"
+}
