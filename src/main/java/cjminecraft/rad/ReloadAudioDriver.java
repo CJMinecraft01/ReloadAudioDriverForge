@@ -18,7 +18,6 @@ import org.lwjgl.glfw.GLFW;
  */
 @Mod(ReloadAudioDriver.MODID)
 @Mod.EventBusSubscriber
-@OnlyIn(Dist.CLIENT)
 public class ReloadAudioDriver {
 
     public static final String MODID = "rad";
