@@ -50,6 +50,6 @@ Reloads the audio driver when pressing F3 + R.
 [[dependencies.rad]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.1,)"
+    versionRange="[1.16.1,1.17)"
     ordering="NONE"
     side="CLIENT"
